@@ -1,0 +1,47 @@
+name: 'Istio Workspace'
+description: 'Launch previews in a production system'
+inputs:
+  action: 
+    description: 'What action to run'
+    required: true
+    default: 'create'
+  server: 
+    description: 'Which server to target'
+    required: true
+  token: 
+    description: 'Who to authenticate as'
+    required: true
+  namespace: 
+    description: 'Which namespace to target'
+    required: true
+  deployment: 
+    description: 'What target'
+    required: true
+  session: 
+    description: 'What to call the session'
+    required: false
+  route: 
+    description: 'How to route'
+    required: false
+  image: 
+    description: 'What image to use for the target'
+    required: false
+  config: 
+    description: 'What config to use'
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    ACTION: ${{ inputs.action }}
+    SERVER: ${{ inputs.server }}
+    TOKEN: ${{ inputs.token }}
+    IKE_NAMESPACE: ${{ inputs.namespace }}
+    IKE_SESSION: ${{ inputs.session }}
+    IKE_DEPLOYMENT: ${{ inputs.deployment }}
+    IKE_ROUTE: ${{ inputs.route }}
+    IKE_IMAGE: ${{ inputs.image }}
+    IKE_CONFIG: ${{ inputs.config }}
+branding:
+  icon: cloud
+  color: red

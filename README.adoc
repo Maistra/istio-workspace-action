@@ -1,0 +1,18 @@
+## GitHub Action for istio workspace
+
+Full example see https://github.com/maistra/istio-workspace-ci-demo
+
+Action configuration:
+
+[source,yaml]
+----
+- name: Deploy 
+  uses: maistra/istio-workspace-action@master
+  with:
+    action: create
+    server: ${{ secrets.K8S_API_SERVER }}
+    token: ${{ secrets.K8S_TOKEN }}
+    session: ${{ github.head_ref }}
+    config: service-a/.ike.config.yaml
+    image: repo/image-name:${{ github.sha }}
+----
